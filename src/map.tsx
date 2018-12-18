@@ -139,11 +139,6 @@ const ReactMapboxFactory = ({
   injectCSS = true,
   transformRequest
 }: FactoryParameters) => {
-  if (injectCSS) {
-    // tslint:disable-next-line:no-submodule-imports
-    require('mapbox-gl/dist/mapbox-gl.css');
-  }
-
   return class ReactMapboxGl extends React.Component<Props & Events, State> {
     public static defaultProps = {
       // tslint:disable-next-line:no-any
