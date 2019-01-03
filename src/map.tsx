@@ -252,7 +252,7 @@ const ReactMapboxFactory = ({
       this.setState({ map });
 
       if (fitBounds) {
-        map.fitBounds(fitBounds, fitBoundsOptions);
+        map.fitBounds(fitBounds, fitBoundsOptions, { auto: true });
       }
 
       // tslint:disable-next-line:no-any

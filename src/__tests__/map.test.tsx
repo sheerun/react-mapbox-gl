@@ -48,7 +48,7 @@ describe('Map', () => {
       />
     );
 
-    expect(mockfitBounds).toBeCalledWith(fitBoundsValues, fitBoundsOptions);
+    expect(mockfitBounds).toBeCalledWith(fitBoundsValues, fitBoundsOptions, { auto: true });
   });
 
   it('Should update fitBounds if fitBoundsOptions changes', () => {
