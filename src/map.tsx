@@ -333,7 +333,9 @@ const ReactMapboxFactory = ({
           didFitBoundsUpdate ||
           !isEqual(this.props.fitBoundsOptions, nextProps.fitBoundsOptions)
         ) {
-          map.fitBounds(nextProps.fitBounds, nextProps.fitBoundsOptions);
+          map.fitBounds(nextProps.fitBounds, nextProps.fitBoundsOptions, {
+            auto: true
+          });
         }
       }
 
