@@ -6,7 +6,7 @@ Factory function that returns a React Mapbox component. Parameters of the factor
 
 ## Pre-requirement
 
-Have a CSS Loader installed unless you set `injectCSS` to `false`.
+You will need a CSS loader to use this library as it inject mapbox-gl css .
 
 ### How to use
 
@@ -49,7 +49,6 @@ const Map = ReactMapboxGl({
 * **refreshExpiredTiles** _(Default: `true`)_: `boolean` If `false` , the map won't attempt to re-request tiles once they expire per their HTTP cacheControl / expires headers.
 * **failIfMajorPerformanceCaveat** _(Default: `false`)_: `boolean` If `true` , map creation will fail if the performance of Mapbox GL JS would be dramatically worse than expected (i.e. a software renderer would be used).
 * **bearingSnap** _(Default: `7`)_: `number` The threshold, measured in degrees, that determines when the map's bearing (rotation) will snap to north. For example, with a bearingSnap of 7, if the user rotates the map within 7 degrees of north, the map will automatically snap to exact north.
-* **injectCss** _(Default: `true`)_: `boolean` If `false`, the factory won't require the mapbox-gl.css sheet.
 
 ### Component Properties
 
@@ -176,6 +175,12 @@ import { Layer } from "react-mapbox-gl";
 * **sourceId**: `string` When passed to the layer, the source will not be created but only the layer and it will use the given source id.
 * **before**: `string` Pass the id of a layer, it will display the current layer before the layer defined by the id. [mapbox api](https://www.mapbox.com/mapbox-gl-js/api/#Map#addLayer)
 * **images**: `[imageKey: string, image: HTMLImageElement, options: object]` Also accepts array of the previous image tuple. Add images for use in layout with prop `icon-image`. The value should be the `imageKey` string of the tuple. Alternatively, use mapbox studio to upload the image, it will be fetched with the map style object. (see [map.addImage](https://www.mapbox.com/mapbox-gl-js/api/#map#addimage) options for the tuple options).
+* **onMouseMove** `function` Mouse move handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
+* **onMouseEnter** `function` Mouse enter handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
+* **onMouseLeave** `function` Mouse leave handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
+* **onMouseDown** `function` Mouse down handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
+* **onMouseUp** `function` Mouse up handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
+* **onClick** `function` Mouse click handler. [mapbox map mouse event](https://www.mapbox.com/mapbox-gl-js/api/#mapmouseevent)
 
 ---
 
@@ -282,6 +287,31 @@ import { Feature } from "react-mapbox-gl";
 * **onDrag** : `(mapWithEvt: object) => void` Triggered when the user continue dragging the feature (ie. move).
 * **onDragEnd** : `(mapWithEvt: object) => void` Triggered when the user stop dragging the feature.
 
+---
+
+# Image
+
+Adds to the map a image that can be used as [`icon-image`](https://www.mapbox.com/mapbox-gl-js/style-spec#layout-symbol-icon-image)
+### How to use
+
+ Load local image. [see docs](https://www.mapbox.com/mapbox-gl-js/api#map#addimage)
+```jsx harmony
+<Image id={'image-uid'} data={someImage} />
+```
+
+ Load image from url. [see docs](https://www.mapbox.com/mapbox-gl-js/api#map#loadimage)
+```jsx harmony
+<Image id={'image-uid'} url={'url/to/image'} />
+```
+
+### Properties
+* **id** _(required)_: `string` the image name
+* **url** `string` A url to load the image from [see docs](https://www.mapbox.com/mapbox-gl-js/api#map#loadimage)
+* **data** `ImageDataType` The image data [see docs](https://www.mapbox.com/mapbox-gl-js/api#map#loadimage)
+* **options** `ImageOptionsType` The image options [see docs](https://www.mapbox.com/mapbox-gl-js/api#map#loadimage)
+* **onLoaded** `() => void` Will be called when image loaded to map
+* **onError** `(error: Error) => void` Will be called if image did not load 
+  
 ---
 
 # ZoomControl
